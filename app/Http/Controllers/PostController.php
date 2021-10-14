@@ -77,7 +77,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         if (Auth::check()) {
-            $like = Like::with('post')->where('post_id', $post->id)
+            $like = $post->likes
                 ->where('user_id', auth()->user()->id)->first();
             return view('posts.show', compact('post', 'like'));
         } else
